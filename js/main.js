@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 2. SISTEMA DE MODALES (LIGHTBOX Z0OM)
+    // 2. SISTEMA DE MODALES (LIGHTBOX CON ZOOM Y DRAG)
     // ==========================================
     const lightbox = document.getElementById('image-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -32,15 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnOpen = document.getElementById('btn-open-modal');
     const btnClose = document.getElementById('btn-close-lightbox');
     
+    // Variables para el Zoom y Arrastre (Pan)
     let currentZoom = 1;
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let translateX = 0, translateY = 0;
+
+    // Estilo inicial del cursor
+    lightboxImg.style.cursor = 'grab';
 
     // Abrir Modal
     btnOpen.addEventListener('click', () => {
         lightboxImg.src = thumbImg.src; 
         lightbox.classList.remove('hidden');
         setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+        
+        // Reiniciar valores al abrir
         currentZoom = 1;
-        applyZoom();
+        translateX = 0;
+        translateY = 0;
+        applyTransform();
         document.body.style.overflow = 'hidden'; 
     });
 
@@ -54,30 +65,61 @@ document.addEventListener('DOMContentLoaded', () => {
     btnClose.addEventListener('click', closeLightbox);
     
     // Cerrar al hacer clic fuera de la imagen
-    lightbox.addEventListener('click', (e) => {
+    lightbox.addEventListener('mousedown', (e) => {
+        // Solo cerramos si hace clic en el fondo, no en la imagen
         if (e.target === lightbox || e.target.parentElement === lightbox) {
             closeLightbox();
         }
     });
 
-    // Controles de Zoom
+    // --- CONTROLES DE ZOOM ---
     document.getElementById('btn-zoom-in').addEventListener('click', () => {
         if (currentZoom < 3) currentZoom += 0.5; 
-        applyZoom();
+        applyTransform();
     });
 
     document.getElementById('btn-zoom-out').addEventListener('click', () => {
         if (currentZoom > 0.5) currentZoom -= 0.5; 
-        applyZoom();
+        applyTransform();
     });
 
     document.getElementById('btn-zoom-reset').addEventListener('click', () => {
         currentZoom = 1;
-        applyZoom();
+        translateX = 0; // Regresa al centro
+        translateY = 0;
+        applyTransform();
     });
 
-    function applyZoom() {
-        lightboxImg.style.transform = `scale(${currentZoom})`;
+    // --- LÓGICA DE ARRASTRE (DRAG) ---
+    lightboxImg.addEventListener('mousedown', (e) => {
+        if (currentZoom > 1) { // Solo permitimos arrastrar si hay zoom
+            e.preventDefault(); // Evita que el navegador intente "guardar" la imagen
+            isDragging = true;
+            // Calculamos la posición inicial restando el desplazamiento actual
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            lightboxImg.style.cursor = 'grabbing'; // Cambia el cursor a "mano cerrada"
+        }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        // Calculamos la nueva posición
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        applyTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            lightboxImg.style.cursor = 'grab'; // Cambia el cursor a "mano abierta"
+        }
+    });
+
+    // Función maestra que aplica el zoom y el desplazamiento a la vez
+    function applyTransform() {
+        lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
     }
 
 
@@ -111,5 +153,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    console.log("Interfaz visual y escudo de seguridad cargados correctamente.");
+    console.log("Interfaz visual, visor interactivo y escudo cargados.");
 });
