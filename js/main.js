@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 2. SISTEMA DE MODALES (LIGHTBOX)
+    // 2. SISTEMA DE MODALES (LIGHTBOX Z0OM)
     // ==========================================
     const lightbox = document.getElementById('image-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -36,20 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Abrir Modal
     btnOpen.addEventListener('click', () => {
-        lightboxImg.src = thumbImg.src; // Copia la ruta de la miniatura
+        lightboxImg.src = thumbImg.src; 
         lightbox.classList.remove('hidden');
-        // Pequeño retraso para que la transición de opacidad funcione
         setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
         currentZoom = 1;
         applyZoom();
-        document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+        document.body.style.overflow = 'hidden'; 
     });
 
     // Función para cerrar Modal
     const closeLightbox = () => {
         lightbox.classList.add('opacity-0');
         setTimeout(() => lightbox.classList.add('hidden'), 300);
-        document.body.style.overflow = 'auto'; // Restaura el scroll
+        document.body.style.overflow = 'auto'; 
     };
 
     btnClose.addEventListener('click', closeLightbox);
@@ -63,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Controles de Zoom
     document.getElementById('btn-zoom-in').addEventListener('click', () => {
-        if (currentZoom < 3) currentZoom += 0.5; // Límite 300%
+        if (currentZoom < 3) currentZoom += 0.5; 
         applyZoom();
     });
 
     document.getElementById('btn-zoom-out').addEventListener('click', () => {
-        if (currentZoom > 0.5) currentZoom -= 0.5; // Límite 50%
+        if (currentZoom > 0.5) currentZoom -= 0.5; 
         applyZoom();
     });
 
@@ -81,5 +80,36 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.style.transform = `scale(${currentZoom})`;
     }
 
-    console.log("Interfaz visual e interacciones cargadas correctamente.");
+
+    // ==========================================
+    // 3. ESCUDO ANTI-CURIOSOS (Bloqueo de código)
+    // ==========================================
+    
+    // 3.1 Bloquear Clic Derecho (Menú contextual)
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // 3.2 Bloquear teclas de herramientas de desarrollador
+    document.addEventListener('keydown', function(e) {
+        // Bloquear F12
+        if (e.key === 'F12' || e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Bloquear Ctrl + U (Ver código fuente)
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.keyCode === 85)) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Bloquear Ctrl + Shift + I / C / J (Herramientas de desarrollador)
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'C' || e.key === 'c' || e.key === 'J' || e.key === 'j')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    console.log("Interfaz visual y escudo de seguridad cargados correctamente.");
 });
