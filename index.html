@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión Operativa IT - Grupo 5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/img/kardex2-removebg-preview.png">
+    <style>
+        .animate-fadeIn { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-active { border-bottom: 4px solid #3b82f6; color: #3b82f6; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 0.75rem; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        /* Clases para que el zoom sea fluido */
+        .zoom-transition { transition: transform 0.3s ease-out; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 font-[Inter] pb-20">
+
+    <nav class="bg-slate-900 text-white shadow-2xl sticky top-0 z-50 border-b border-blue-500/30">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-blue-600 p-2 rounded-lg shadow-lg shadow-blue-500/20">
+                    <i class="fas fa-server text-white text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold leading-none tracking-tight">SISTEMA <span class="text-blue-400">IT</span></span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-slate-400">Gestión Operativa Grupo 1</span>
+                </div>
+            </div>
+            <div class="text-[11px] text-slate-400 uppercase tracking-widest font-bold hidden md:block">
+                UMA Santa Ana | Investigación de Operaciones
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-white border-b border-slate-200 py-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-blue-700 font-bold uppercase text-xs tracking-widest mb-3 flex items-center">
+                    <i class="fas fa-exclamation-circle mr-2"></i> Descripción del Problema
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-600">
+                    Se nos ha solicitado el mantenimiento y reparación urgente de <strong>cinco servidores</strong> para clientes corporativos. El reto es gestionar la carga de trabajo dinámica y asegurar la disponibilidad de repuestos críticos en bodega ante variaciones de importación.
+                </p>
+            </div>
+            <div class="bg-blue-600 p-6 rounded-2xl text-white shadow-xl shadow-blue-600/20">
+                <h3 class="text-blue-200 font-bold uppercase text-xs tracking-widest mb-3 flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i> ¿Qué es la Razón Crítica (RC)?
+                </h3>
+                <p class="text-sm leading-relaxed opacity-90 mb-4">
+                    Es una regla dinámica que calcula la urgencia de una tarea dividiendo el tiempo restante entre los días de procesamiento requeridos.
+                </p>
+                <div class="bg-blue-800/50 p-3 rounded-lg text-center font-mono text-[11px] sm:text-xs border border-blue-400/30 overflow-hidden">
+                    RC = (Fecha Entrega - Fecha Actual) / Tiempo Proc.
+                </div>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-2xl text-white shadow-xl">
+                <h3 class="text-slate-400 font-bold uppercase text-xs tracking-widest mb-3 flex items-center">
+                    <i class="fas fa-traffic-light mr-2"></i> Interpretación
+                </h3>
+                <ul class="space-y-2 text-[13px]">
+                    <li class="flex items-center text-red-400"><i class="fas fa-circle mr-2 text-[8px]"></i> RC < 1.0: Atrasado / Crítico</li>
+                    <li class="flex items-center text-yellow-400"><i class="fas fa-circle mr-2 text-[8px]"></i> RC = 1.0: A Tiempo (Precaución)</li>
+                    <li class="flex items-center text-green-400"><i class="fas fa-circle mr-2 text-[8px]"></i> RC > 1.0: Con Holgura (Seguro)</li>
+                    <li class="flex items-center text-slate-400 italic"><i class="fas fa-circle mr-2 text-[8px]"></i> RC ≤ 0: Plazo Vencido</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 mt-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-slate-700 font-bold uppercase text-xs tracking-widest mb-4 flex items-center">
+                    <i class="fab fa-youtube text-red-500 mr-2 text-lg"></i> Video Explicativo
+                </h3>
+                <div class="video-container shadow-md border border-slate-100">
+                    <iframe src="https://www.youtube.com/embed/PJdKsc9K8lw" title="Video Razón Crítica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full relative">
+                <h3 class="text-slate-700 font-bold uppercase text-xs tracking-widest mb-4 flex items-center">
+                    <i class="fas fa-image text-blue-500 mr-2 text-lg"></i> Infografía del Proceso
+                </h3>
+                <div class="flex-grow flex items-center justify-center bg-slate-50 rounded-xl border-2 border-dashed border-slate-300 overflow-hidden relative group cursor-pointer" id="btn-open-modal">
+                    
+                    <img src="assets/img/infografia.png" id="infographic-thumbnail" alt="Infografía de la Razón Crítica" class="w-full h-auto object-contain max-h-[300px] hover:scale-105 transition-transform duration-300">
+                    
+                    <div class="absolute inset-0 flex flex-col items-center justify-center bg-blue-900/60 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-[2px]">
+                        <i class="fas fa-search-plus text-4xl text-white mb-2 shadow-sm"></i>
+                        <p class="text-sm font-bold text-white uppercase tracking-widest">Click para ampliar</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 mt-10">
+        <h3 class="text-slate-400 font-bold uppercase text-[10px] tracking-[0.2em] mb-3 text-center">Flujo de Trabajo del Taller</h3>
+        <div class="flex flex-wrap justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+            <span class="bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm flex items-center"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full mr-2">01</span> Recepción</span>
+            <i class="fas fa-chevron-right self-center text-[10px] text-slate-300"></i>
+            <span class="bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm flex items-center"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full mr-2">02</span> Cálculo RC</span>
+            <i class="fas fa-chevron-right self-center text-[10px] text-slate-300"></i>
+            <span class="bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm flex items-center"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full mr-2">03</span> Priorización</span>
+            <i class="fas fa-chevron-right self-center text-[10px] text-slate-300"></i>
+            <span class="bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm flex items-center"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full mr-2">04</span> Ejecución</span>
+        </div>
+    </section>
+
+    <header class="max-w-7xl mx-auto px-6 mt-14">
+        <div class="flex border-b-2 border-slate-200">
+            <button id="btn-inventario" class="tab-active py-4 px-6 font-bold flex items-center transition-all bg-white rounded-t-lg">
+                <i class="fas fa-warehouse mr-2"></i> Inventario (Kardex)
+            </button>
+            <button id="btn-secuenciacion" class="text-slate-400 py-4 px-6 font-bold flex items-center hover:text-blue-600 hover:bg-slate-100 transition-all rounded-t-lg">
+                <i class="fas fa-stream mr-2"></i> Secuenciación (RC)
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-6">
+        <section id="tab-inventario" class="animate-fadeIn">
+            <div class="bg-white rounded-b-2xl rounded-tr-2xl shadow-sm border border-slate-200 p-8 min-h-[400px]" id="contenedor-inventario"></div>
+        </section>
+        <section id="tab-secuenciacion" class="hidden animate-fadeIn">
+            <div class="bg-white rounded-b-2xl rounded-tr-2xl shadow-sm border border-slate-200 p-8 min-h-[400px]" id="contenedor-secuenciacion"></div>
+        </section>
+    </main>
+
+    <footer class="text-center text-slate-400 text-[11px] uppercase tracking-[0.3em] font-bold mt-10 border-t border-slate-200 pt-6">
+        UMA 2026 | Investigación de Operaciones | Grupo 1
+    </footer>
+
+    <div id="image-lightbox" class="fixed inset-0 z-[100] hidden bg-slate-900/95 flex items-center justify-center transition-opacity duration-300 opacity-0 backdrop-blur-sm">
+        <button id="btn-close-lightbox" class="absolute top-6 right-8 text-white/70 hover:text-white text-4xl transition-colors z-50">
+            &times;
+        </button>
+        
+        <div class="relative w-full h-full flex items-center justify-center overflow-auto p-4">
+            <img id="lightbox-img" src="" alt="Infografía Ampliada" class="zoom-transition max-w-full max-h-full object-contain transform scale-100 shadow-2xl origin-center">
+        </div>
+
+        <div class="absolute bottom-8 flex space-x-6 z-50 bg-slate-800/80 px-6 py-3 rounded-full border border-slate-600/50 backdrop-blur-md shadow-2xl">
+            <button id="btn-zoom-out" class="text-white hover:text-blue-400 transition-colors" title="Alejar">
+                <i class="fas fa-search-minus text-2xl"></i>
+            </button>
+            <button id="btn-zoom-reset" class="text-white hover:text-blue-400 transition-colors text-sm font-bold uppercase tracking-widest" title="Restaurar">
+                100%
+            </button>
+            <button id="btn-zoom-in" class="text-white hover:text-blue-400 transition-colors" title="Acercar">
+                <i class="fas fa-search-plus text-2xl"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <script src="/js/storage.js"></script>
+    <script src="/js/inventario.js"></script>
+    <script src="/js/secuenciacion.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

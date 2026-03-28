@@ -1,0 +1,12 @@
+[
+  { "id": "RAM-32G-ECC", "desc": "Memoria RAM 32GB ECC DDR4", "demanda": 1, "leadTime": 5, "safety": 5 },
+  { "id": "SSD-ENT-2TB", "desc": "Disco Sólido Enterprise 2TB", "demanda": 1, "leadTime": 4, "safety": 3 },
+  { "id": "HDD-SAS-4TB", "desc": "Disco Duro SAS 4TB 10K RPM", "demanda": 1, "leadTime": 5, "safety": 3 },
+  { "id": "PSU-1000W-R", "desc": "Fuente de Poder Redundante 1000W", "demanda": 1, "leadTime": 7, "safety": 2 },
+  { "id": "FAN-SRV-120", "desc": "Ventilador de Chasis Servidor 120mm", "demanda": 2, "leadTime": 3, "safety": 10 },
+  { "id": "BTY-UPS-12V", "desc": "Batería de Reemplazo UPS 12V", "demanda": 1, "leadTime": 5, "safety": 5 },
+  { "id": "CBL-DAC-10G", "desc": "Cable de Red DAC SFP+ 10Gbps", "demanda": 3, "leadTime": 2, "safety": 15 },
+  { "id": "PST-TRM-PRO", "desc": "Pasta Térmica Alto Rendimiento 50g", "demanda": 1, "leadTime": 2, "safety": 5 },
+  { "id": "NIC-PCIE-4P", "desc": "Tarjeta de Red PCIe 4 Puertos Gigabit", "demanda": 1, "leadTime": 4, "safety": 2 },
+  { "id": "CTRL-RAID-8", "desc": "Controlador RAID 8 Puertos", "demanda": 1, "leadTime": 7, "safety": 1 }
+]
